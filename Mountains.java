@@ -7,10 +7,13 @@ public class Mountains {
     private ArrayList<Mountain> mountains = new ArrayList<>();
 
     public Mountains() {
+        pathFile = "";
+        readFromFile();
     }
 
     public Mountains(String pathFile) {
         this.pathFile = pathFile;
+        readFromFile();
     }
 
     public Mountain get(String mountainCode) {
@@ -23,18 +26,15 @@ public class Mountains {
 
     public boolean isValidMountainCode(String mountainCode) {
         if(mountainCode == null || mountainCode.isEmpty()) return false;
-        
-        // String is a built-in class
-        // to get a character from a String object --> charAt (index)
-        for(int i = 0; i < mountainCode.length(); i++) {
-            char c = mountainCode.charAt(i);
+        return mountainCode.matches("\\d+");
+    }
 
-            if(c < '0' || c > '9') return false;
+    public Mountain searchMountain(String code) {
+        for(Mountain m : this.mountains) {
+            if(m.getMountainCode().equals(code)) return m;
         }
 
-        return true;
-
-        // return mountainCode.matches("\\d+");
+        return null;
     }
 
     public Mountain dataToObject(String text) {
