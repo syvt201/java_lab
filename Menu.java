@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class Menu {
     private static Scanner sc = new Scanner(System.in);
-    private static Students stds = new Students();
-    private static Mountains mts = new Mountains("MountainList.csv");
+    private static Students students = new Students();
+    private static Mountains mountains = new Mountains("MountainList.csv");
 
     public static boolean validateID (String ID) {
         if(ID == null || ID.length() != 8) return false;
-        if(stds.searchById(ID) != null) return false;
+        if(students.searchById(ID) != null) return false;
         return ID.matches("^[CcDdHhSsQq][Ee]\\\\d{6}$");
     }
 
@@ -29,8 +29,8 @@ public class Menu {
     }
 
     public static boolean validateMountainCode(String code) {
-        if(mts.isValidMountainCode(code) == false) return false;
-        return mts.searchMountain(code) != null;
+        if(mountains.isValidMountainCode(code) == false) return false;
+        return mountains.searchMountain(code) != null;
     }
 
     public static String telecomCompany (String phone) {
@@ -90,9 +90,65 @@ public class Menu {
 
         String teleComp = telecomCompany(phone);
         if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 + 0.35);
-        stds.add(new Student(ID, name, phone, email, code, totalFee));
+        students.add(new Student(ID, name, phone, email, code, totalFee));
     }
-    
+
+    public static void function_2 () {
+        String ID, name, phone, email, code;
+        while(true) {
+            System.out.print("Student Code: ");
+            ID = sc.nextLine();
+            if(validateID(ID) == false)
+                System.out.println("Invalid ID, enter again.");
+            else if (students.searchById(ID) == null) {
+                System.out.println("This student has not registered yet.");
+                return;
+            } else break;
+        }
+
+        while(true) {
+            System.out.print("Name: ");
+            name = sc.nextLine();
+            if(validateName(name) == false)
+                System.out.println("Invalid name, enter again.");
+            else break;
+        }
+
+        while(true) {
+            System.out.print("Phone Number: ");
+            phone = sc.nextLine();
+            if(validatePhone(phone) == false)
+                System.out.println("Invalid phone number, enter again.");
+            else break;
+        }
+
+        while(true) {
+            System.out.print("Email: ");
+            email = sc.nextLine();
+            if(validateEmail(email) == false)
+                System.out.println("Invalid email, enter again.");
+            else break;
+        }
+
+        while(true) {
+            System.out.print("Mountain Code: ");
+            code = sc.nextLine();
+            if(validateMountainCode(code) == false)
+                System.out.println("Invalid mountain code, enter again.");
+            else break;
+        }
+
+        String teleComp = telecomCompany(phone);
+        double totalFee = 6000000;
+        if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 + 0.35);
+        students.update(ID, name, phone, email, code, totalFee);
+        System.out.println("Update successfully.");
+    }
+
+    public static void function_3() {
+        students.showAll();
+    }
+
     public static void menu () {
         int choice = 0;
         
@@ -119,10 +175,10 @@ public class Menu {
                     function_1();
                     break;
                 case 2:
-                
+                    function_2();
                     break;
                 case 3:
-                
+                    function_3();
                     break;
                 case 4:
                 

@@ -12,6 +12,10 @@ public class Students {
 
     public boolean isSaved() {return isSaved;}
 
+    public int size() {
+        return students.size();
+    }
+
     public void add(Student x) {
         students.add(x);
     }
@@ -23,6 +27,15 @@ public class Students {
                 students.set(i, x);
             }
         }
+    }
+
+    public void update(String ID, String name, String phone, String email, String mountainCode, double fee) {
+        Student std = this.searchById(ID);
+        if(std == null) return;
+        std.setName(name);
+        std.setEmail(email);
+        std.setMountainCode(mountainCode);
+        std.setTuitionFee(fee);
     }
 
     public void delete(String id) {
@@ -55,9 +68,17 @@ public class Students {
     }
 
     public void showAll() {
-        for(int i = 0; i < students.size(); i++) {
-            Student st = students.get(i);
-            System.out.println(st);
+        if (students.isEmpty()) {
+            System.out.println("No students have registered yet.");
+        } else {
+            System.out.println("----------------------------------------------------------------");
+            System.out.printf("%12s| %15s| %11s| %9s| 10%s\n", "Student ID", "Name", "Phone", "Peak Code", "Fee");
+            System.out.println("----------------------------------------------------------------");
+            for (Student student : students) {
+                System.out.printf("%12s| %15s| %11s| %9s| 10%s\n", student.getId(), student.getName(), student.getPhone(),
+                        student.getEmail(), student.getMountainCode(), student.getTuitionFee());
+            }
+            System.out.println("----------------------------------------------------------------");
         }
     }
 
