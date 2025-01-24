@@ -95,6 +95,8 @@ public class Menu {
         String teleComp = telecomCompany(phone);
         if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 - 0.35);
         students.add(new Student(ID, name, phone, email, code, totalFee));
+
+        System.out.println();
     }
 
     public static void function_2 () {
@@ -147,10 +149,44 @@ public class Menu {
         if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 - 0.35);
         students.update(ID, name, phone, email, code, totalFee);
         System.out.println("Update successfully.");
+        System.out.println();
+
     }
 
     public static void function_3() {
         students.showAll();
+        System.out.println();
+
+    }
+
+    public static void function_4() {
+        String ID;
+        System.out.print("Student Code: ");
+        ID = sc.nextLine();
+        Student std = students.searchById(ID);
+
+        if(std == null) {
+            System.out.println("This student has not registered yet.");
+        } else {
+            String choice;
+            System.out.println("Student Details:");
+            System.out.println("-----------------------------------------------------");
+            System.out.printf("%-10s: %s\n", "Student ID", std.getId());
+            System.out.printf("%-10s: %s\n", "Name", std.getName());
+            System.out.printf("%-10s: %s\n", "Phone", std.getPhone());
+            System.out.printf("%-10s: %s\n", "Mountain", std.getMountainCode());
+            System.out.printf("%-10s: %s\n", "Fee", (int) std.getTuitionFee());
+            System.out.println("-----------------------------------------------------");
+            System.out.print("Are you sure you want to delete this registration? (Y/N): ");
+            choice = sc.nextLine();
+
+            if(choice == "y" || choice == "Y") {
+                students.delete(ID);
+                System.out.println("\nThe registration has been successfully deleted.\n");
+            }
+        }
+        System.out.println();
+
     }
 
     public static void menu () {
@@ -186,7 +222,7 @@ public class Menu {
                     function_3();
                     break;
                 case 4:
-                
+                    function_4();
                     break;
                 case 5:
                 
