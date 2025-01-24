@@ -5,10 +5,14 @@ public class Menu {
     private static Students students = new Students();
     private static Mountains mountains = new Mountains("MountainList.csv");
 
+    public static boolean isRegisted (String ID) {
+        if(ID == null || ID.length() != 8) return false;
+        return students.searchById(ID) != null;
+    }
+
     public static boolean validateID (String ID) {
         if(ID == null || ID.length() != 8) return false;
-        if(students.searchById(ID) != null) return false;
-        return ID.matches("^[CcDdHhSsQq][Ee]\\\\d{6}$");
+        return ID.matches("^[CcDdHhSsQq][Ee]\\d{6}$");
     }
 
     public static boolean validateName (String name) {
@@ -18,7 +22,7 @@ public class Menu {
 
     public static boolean validatePhone (String phone) {
         if(phone == null) return false;
-        return phone.matches("^(081|082|083|084|085|088|091|094)\\\\d{7}$");
+        return phone.matches("^(08|03|09)\\d{8}$");
     }
 
     public static boolean validateEmail(String email) {
@@ -51,7 +55,7 @@ public class Menu {
         while(true) {
             System.out.print("Student ID: ");
             ID = sc.nextLine();
-            if(validateID(ID) == false)
+            if(validateID(ID) == false || isRegisted(ID) == true)
                 System.out.println("Invalid ID, enter again.");
             else break;
         }
@@ -89,7 +93,7 @@ public class Menu {
         }
 
         String teleComp = telecomCompany(phone);
-        if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 + 0.35);
+        if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 - 0.35);
         students.add(new Student(ID, name, phone, email, code, totalFee));
     }
 
@@ -140,7 +144,7 @@ public class Menu {
 
         String teleComp = telecomCompany(phone);
         double totalFee = 6000000;
-        if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 + 0.35);
+        if(teleComp == "vnpt" || teleComp == "viettel") totalFee = totalFee * (1 - 0.35);
         students.update(ID, name, phone, email, code, totalFee);
         System.out.println("Update successfully.");
     }
@@ -167,7 +171,8 @@ public class Menu {
             try {
                 choice = Integer.parseInt(sc.nextLine());
             } catch (Exception e) {
-                e.printStackTrace();
+                // e.printStackTrace();
+                System.out.println("Invalid choice.");
             } 
 
             switch (choice) {
@@ -204,6 +209,6 @@ public class Menu {
         }
     }
     public static void main (String args[]) {
-
+        menu();
     }
 }

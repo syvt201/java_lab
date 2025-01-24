@@ -76,16 +76,9 @@ public class Mountains {
         } 
     }
 
-    public void display () {
-        for(Mountain mt : this.mountains) {
-            System.out.println(mt.toString());
-        }
-    }
-
-    public static void main(String[] args) {
-        Mountains mts = new Mountains("D:/HuyTrung/MountainList.csv");
-
-        mts.readFromFile();
-        mts.display();
-    }
+    // public void display () {
+    //     for(Mountain mt : this.mountains) {
+    //         System.out.println(mt.toString());
+    //     }
+    // }
 }

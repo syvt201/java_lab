@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Students {
     private String pathFile;
@@ -33,6 +32,7 @@ public class Students {
         Student std = this.searchById(ID);
         if(std == null) return;
         std.setName(name);
+        std.setPhone(phone);
         std.setEmail(email);
         std.setMountainCode(mountainCode);
         std.setTuitionFee(fee);
@@ -72,11 +72,11 @@ public class Students {
             System.out.println("No students have registered yet.");
         } else {
             System.out.println("----------------------------------------------------------------");
-            System.out.printf("%12s| %15s| %11s| %9s| 10%s\n", "Student ID", "Name", "Phone", "Peak Code", "Fee");
+            System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", "Student ID", "Name", "Phone", "Peak Code", "Fee");
             System.out.println("----------------------------------------------------------------");
             for (Student student : students) {
-                System.out.printf("%12s| %15s| %11s| %9s| 10%s\n", student.getId(), student.getName(), student.getPhone(),
-                        student.getEmail(), student.getMountainCode(), student.getTuitionFee());
+                System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", student.getId(), student.getName(), student.getPhone(),
+                        student.getMountainCode(), (int) student.getTuitionFee());
             }
             System.out.println("----------------------------------------------------------------");
         }
