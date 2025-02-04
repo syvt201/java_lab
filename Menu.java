@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -189,6 +190,29 @@ public class Menu {
 
     }
 
+    public static void function_5() {
+        String name;
+        System.out.print("Student name: ");
+        name = sc.nextLine();
+        List<Student> stds = students.searchByName(name);
+
+        if(stds.size() == 0) {
+            System.out.println("No one matches the search criteria!");
+        } else {
+            System.out.println("Matching Students:");
+            System.out.println("----------------------------------------------------------------");
+            System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", "Student ID", "Name", "Phone", "Peak Code", "Fee");
+            System.out.println("----------------------------------------------------------------");
+            for (Student student : stds) {
+                System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", student.getId(), student.getName(), student.getPhone(),
+                        student.getMountainCode(), (int) student.getTuitionFee());
+            }
+            System.out.println("----------------------------------------------------------------");
+        }
+        System.out.println();
+
+    }
+
     public static void menu () {
         int choice = 0;
         
@@ -225,7 +249,7 @@ public class Menu {
                     function_4();
                     break;
                 case 5:
-                
+                    function_5();
                     break;
                 case 6:
                 

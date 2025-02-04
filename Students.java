@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Students {
     private String pathFile;
@@ -58,14 +60,23 @@ public class Students {
         return null;
     }
 
-    public void searchByName(String name) {
-        for(int i = 0; i < students.size(); i++) {
-            Student st = students.get(i);
-            if(st.getName().equals(name)) {
-                System.out.println(st);
-            }
+    public List<Student> searchByName (String name) {
+        List<Student> res = new ArrayList<>();
+        for(Student std : this.students) {
+            if(std.getName().toLowerCase().contains(name.toLowerCase())) res.add(std);
         }
+
+        return res;
     }
+
+    // public void searchByName(String name) {
+    //     for(int i = 0; i < students.size(); i++) {
+    //         Student st = students.get(i);
+    //         if(st.getName().equals(name)) {
+    //             System.out.println(st);
+    //         }
+    //     }
+    // }
 
     public void showAll() {
         if (students.isEmpty()) {
