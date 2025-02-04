@@ -69,6 +69,34 @@ public class Students {
         return res;
     }
 
+    public List<Student> searchByCampus (String campus){
+        List<Student> res = new ArrayList<>();
+        for(Student std : this.students){
+            if(std.getId().toUpperCase().contains(campus.toUpperCase())) res.add(std);
+        }
+        return res;
+    }
+
+    public List<String> getMountainCode () {
+        List<String> res = new ArrayList<>();
+        for(Student std : this.students) {
+            String mt_code = std.getMountainCode();
+            if(res.contains(mt_code) == false) res.add(mt_code);
+        }
+
+        return res;
+    }
+
+    public List<Student> getStudentByMountainCode(String mountainCode) {
+        List<Student> res = new ArrayList<>();
+        for(Student std : this.students) {
+            String mt_code = std.getMountainCode();
+            if(mt_code.equals(mountainCode)) res.add(std);
+        }
+
+        return res;
+    }
+    
     // public void searchByName(String name) {
     //     for(int i = 0; i < students.size(); i++) {
     //         Student st = students.get(i);

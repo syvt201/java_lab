@@ -213,6 +213,57 @@ public class Menu {
 
     }
 
+    public static String getCampus(String campus){
+        if(campus.equals("CE")) return "Can Tho";
+        if(campus.equals("DE")) return "Da Nang";
+        if(campus.equals("HE")) return "Ha Noi";
+        if(campus.equals("SE")) return "Ho Chi Minh";
+        if(campus.equals("QE")) return "Quy Nhon";
+        return null;
+    }
+    public static void function_6() {
+        String campus;
+        System.out.print("Campus code: ");
+        campus = sc.nextLine();
+        List<Student> stds = students.searchByCampus(campus);
+        
+        if(stds == null){
+            System.out.println("No students have registered under this campus.");
+        }else{
+            System.out.printf("Registered Students Under %s Campus (%s):\n", getCampus(campus), campus);
+            System.out.println("----------------------------------------------------------------");
+            System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", "Student ID", "Name", "Phone", "Mountain", "Fee");
+            System.out.println("----------------------------------------------------------------");
+            for (Student student : stds) {
+                System.out.printf("%-12s| %-15s| %-11s| %-9s| %-10s\n", student.getId(), student.getName(), student.getPhone(),
+                        student.getMountainCode(), (int) student.getTuitionFee());
+            }
+            System.out.println("----------------------------------------------------------------");
+            
+            
+        }
+
+    }
+
+    public static void function_7() {
+        List<String> codes = students.getMountainCode();
+        System.out.println("-----------------------------------------------------------------");
+        //                    "Peak Name     | Number of Participants | Total Cost"
+        System.out.printf("%-14s| %-21s| %-23s\n", "Peak Name", "Number of Participants", "Total Cost");
+        System.out.println("-----------------------------------------------------------------");
+
+        for(String code : codes) {
+            List<Student> stds = students.getStudentByMountainCode(code);
+            if(stds.size() == 0) continue;
+            int totalCost = 0;
+
+            for(Student std : stds) totalCost += std.getTuitionFee();
+            System.out.printf("%-14s| %-21s| %-23s\n", code, stds.size(), totalCost);
+        }
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println();
+    }
+
     public static void menu () {
         int choice = 0;
         
@@ -252,10 +303,10 @@ public class Menu {
                     function_5();
                     break;
                 case 6:
-                
+                    function_6();
                     break;
                 case 7:
-                
+                    function_7();
                     break;
                 case 8:
                 
