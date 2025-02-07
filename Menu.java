@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -264,6 +265,17 @@ public class Menu {
         System.out.println();
     }
 
+    public static void function_8() {
+        System.out.print("Enter the file to save: ");
+        String filename = sc.nextLine();
+        try{
+            students.saveToFile(filename);
+            System.out.println("Save successfully to " + filename);
+            System.out.println();
+        } catch (Exception e) {
+            
+        }
+    }
     public static void menu () {
         int choice = 0;
         
@@ -309,7 +321,7 @@ public class Menu {
                     function_7();
                     break;
                 case 8:
-                
+                    function_8();
                     break;
                 case 9:
 

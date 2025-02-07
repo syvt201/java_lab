@@ -66,9 +66,6 @@ public class Student {
         this.tuitionFee = tuitionFee;
     }
 
-    
-
-
     @Override
     public String toString() { 
         return String.format("Student[id=%s, name=%s, phone=%s, email=%s, mountainCode=%s, tuitionFee=%.2f]", id, name, phone, email, mountainCode, tuitionFee); }

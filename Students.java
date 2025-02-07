@@ -1,3 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,14 +101,16 @@ public class Students {
         return res;
     }
     
-    // public void searchByName(String name) {
-    //     for(int i = 0; i < students.size(); i++) {
-    //         Student st = students.get(i);
-    //         if(st.getName().equals(name)) {
-    //             System.out.println(st);
-    //         }
-    //     }
-    // }
+    public void saveToFile(String filename) throws FileNotFoundException, IOException {
+        List<StudentSerializable> stds = new ArrayList<>();
+        for (Student std : this.students) {
+            stds.add(new StudentSerializable(std));
+        }
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(stds);
+        }
+    }
 
     public void showAll() {
         if (students.isEmpty()) {
