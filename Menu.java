@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -324,9 +323,11 @@ public class Menu {
                     function_8();
                     break;
                 case 9:
-
+                    System.out.println("Exiting...");
+                    System.exit(0);
                     break;
                 default:
+                    System.out.printf("Option %s does not exists.\n\n", choice);
                     break;
             }
         }
