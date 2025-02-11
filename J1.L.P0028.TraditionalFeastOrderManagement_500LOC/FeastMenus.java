@@ -18,12 +18,11 @@ public class FeastMenus {
         return null;
     }
 
-    private List<FeastMenu> readFile(String filePath) {
+    public List<FeastMenu> readFile(String filePath) {
         List<FeastMenu> feasts = new ArrayList<>();
         try {
-            File file = new File(filePath);
-            Scanner sc = new Scanner(file);
-            
+            File f = new File(filePath);
+            Scanner sc = new Scanner(f);
             int index = 0;
             while(sc.hasNextLine()) {
                 String line = sc.nextLine();

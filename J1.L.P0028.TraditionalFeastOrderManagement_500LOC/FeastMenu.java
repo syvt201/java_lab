@@ -32,7 +32,7 @@ public class FeastMenu {
 
     @Override
     public String toString() {
-        return String.format("FeatMenu[code=%s, name=%s, price=%s, ingredients=%f]", code, name, price, ingredients); 
+        return String.format("FeatMenu[code=%s, name=%s, price=%s, ingredients=%s]", code, name, price, ingredients); 
     }
     
 }

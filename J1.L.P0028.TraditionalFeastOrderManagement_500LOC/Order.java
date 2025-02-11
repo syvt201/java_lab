@@ -3,27 +3,36 @@ public class Order {
     static int idCount = 1;
     private String customerCode;
     private String setMenuCode;
-    private String numberOfTable;
+    private int numberOfTable;
     private String preferedEventDate;
     private double totalCost;
 
     public Order() {
     }
 
-    public Order(String customerCode, String setMenuCode, String numberOfTable, String preferedEventDate) {
+    public Order(String customerCode, String setMenuCode, int numberOfTable, String preferedEventDate) {
         this.ID = idCount;
         this.customerCode = customerCode;
+        this.setMenuCode = setMenuCode;
         this.numberOfTable = numberOfTable;
         this.preferedEventDate = preferedEventDate;
         idCount++;
     }
 
-    public int getID() {
-        return ID;
+    public void setTotalCost(FeastMenu f) {
+        this.totalCost = numberOfTable * f.getPrice();
     }
 
-    public void setID(int iD) {
-        ID = iD;
+    public void setTotalCost(double cost) {
+        this.totalCost = cost;
+    }
+
+    public double getTotalCost() {
+        return this.totalCost;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public String getCustomerCode() {
@@ -42,11 +51,11 @@ public class Order {
         this.setMenuCode = setMenuCode;
     }
 
-    public String getNumberOfTable() {
+    public int getNumberOfTable() {
         return numberOfTable;
     }
 
-    public void setNumberOfTable(String numberOfTable) {
+    public void setNumberOfTable(int numberOfTable) {
         this.numberOfTable = numberOfTable;
     }
 
