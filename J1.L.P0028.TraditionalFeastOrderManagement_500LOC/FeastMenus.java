@@ -27,8 +27,12 @@ public class FeastMenus {
             int index = 0;
             while(sc.hasNextLine()) {
                 String line = sc.nextLine();
-                if(line == null || line.length() == 0) break;
-                if(index == 0) continue;
+                if(line == null || line.length() == 0) continue;
+                if(index == 0) {
+                    index++;
+                    continue;
+                }
+
                 index++;
                 String tokens[] = line.trim().split(",");
                 String code = tokens[0];
@@ -36,11 +40,19 @@ public class FeastMenus {
                 double price = Double.parseDouble(tokens[2]);
                 String ingredients = tokens[3];
                 feasts.add(new FeastMenu(code, name, price, ingredients));
-
             }
+
             sc.close();
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
         return feasts;
+    }
+
+    public static void main(String[] args) {
+        FeastMenus fms = new FeastMenus("FeastMenu.csv");
+        System.out.println(fms.feastMenus.size());
+        for(FeastMenu f : fms.feastMenus)  System.out.println(f);
     }
 }
