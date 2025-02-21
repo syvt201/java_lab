@@ -19,6 +19,16 @@ public class Order {
         idCount++;
     }
 
+    public Order(String customerCode, String setMenuCode, int numberOfTable, String preferedEventDate, double totalPrice) {
+        this.ID = idCount;
+        this.customerCode = customerCode;
+        this.setMenuCode = setMenuCode;
+        this.numberOfTable = numberOfTable;
+        this.preferedEventDate = preferedEventDate;
+        this.totalCost = totalPrice;
+        idCount++;
+    }
+
     public void setTotalCost(FeastMenu f) {
         this.totalCost = numberOfTable * f.getPrice();
     }

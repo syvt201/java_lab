@@ -8,6 +8,13 @@ public class FeastMenus {
 
     public FeastMenus(String filePath) {
         feastMenus = readFile(filePath);
+        for(FeastMenu m : feastMenus) System.out.println(m);
+
+        
+    }
+
+    List<FeastMenu> getFeastMenus () {
+        return this.feastMenus;
     }
 
     public FeastMenu getByCode(String feastCode) {
@@ -47,11 +54,5 @@ public class FeastMenus {
         }
 
         return feasts;
-    }
-
-    public static void main(String[] args) {
-        FeastMenus fms = new FeastMenus("FeastMenu.csv");
-        System.out.println(fms.feastMenus.size());
-        for(FeastMenu f : fms.feastMenus)  System.out.println(f);
     }
 }
